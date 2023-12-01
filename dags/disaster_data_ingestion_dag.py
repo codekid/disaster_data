@@ -220,7 +220,6 @@ def disaster_data_ingestion():
 
     (
         [
-            create_disaster_data_temp_table,
             create_disaster_data_table,
             create_disaster_data_log_table,
         ]
