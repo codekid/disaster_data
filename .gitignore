@@ -1,5 +1,8 @@
 logs/
 dags/dbt/analytics_practice/targe/
 dags/__pycache__/
+dags/scripts/__pycache__/
+dags/scripts/disaster_data/__pycache__/
+dags/tutorials/
 local-k8s/
 helm/
