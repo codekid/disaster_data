@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: disaster_data
+    database: airflow
+    schema: public
+    tables:
+      - name: disaster_data
