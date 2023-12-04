@@ -94,7 +94,10 @@ def disaster_data_ingestion():
         file names found on the website. Only the missing file names are returned.
         """
         base_dir = os.getcwd() + "/raw"
+        archive_dir = os.getcwd() + "/archive"
+
         check_directory_exists(base_dir)
+        check_directory_exists(archive_dir)
         files = list_dir_contents(base_dir)
         conn = get_postgres_conn()
 
@@ -197,8 +200,6 @@ def disaster_data_ingestion():
             raw_dir = os.getcwd() + "/raw"
             archive_dir = os.getcwd() + "/archive"
             csv_file = missing_file[:-3]
-
-            check_directory_exists(archive_dir)
 
             try:
                 move_file(csv_file, raw_dir, archive_dir)
