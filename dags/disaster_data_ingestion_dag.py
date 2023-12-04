@@ -176,16 +176,16 @@ def disaster_data_ingestion():
                 )
 
         @task(task_id="log_filename", max_active_tis_per_dag=MAX_ACTIVE_TIS)
-        def log_filename(missing_file):
+        def log_filename(missing_files):
             """ """
             conn = get_postgres_conn()
 
             logger.info(
-                get_function_name(), messag=f"Logging {missing_file} to log table."
+                get_function_name(), messag=f"Logging {missing_files} to log table."
             )
 
             # convert filename to data frame for loading
-            filename_df = pd.DataFrame(data=[missing_file], columns=["__filename"])
+            filename_df = pd.DataFrame(data=missing_files, columns=["__filename"])
             filename_df.to_sql(
                 name="disaster_data_log",
                 con=conn,
@@ -215,7 +215,7 @@ def disaster_data_ingestion():
         (
             extract.expand(missing_file=missing_files)
             >> load_disaster_data.expand(missing_file=missing_files)
-            >> log_filename(missing_file=missing_files)
+            >> log_filename(missing_files=missing_files)
             >> archive_disaster_data_file.expand(missing_file=missing_files)
         )
 
