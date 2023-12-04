@@ -108,7 +108,7 @@ def disaster_data_ingestion():
         soup = get_weather_data_page()
         # using the page data, query and pull all the file names
         full_file_list = get_filenames(soup, [])
-        missing_files = [f for f in full_file_list if f[:-3] not in loaded_files]
+        missing_files = [f for f in full_file_list if f not in loaded_files]
         print("files to be loaded")
         print(missing_files)
         return missing_files
@@ -143,13 +143,14 @@ def disaster_data_ingestion():
 
             Loads data to table. Some prework and column addition is done before load.
             """
+            csv_file = missing_file[:-3]
             conn = get_postgres_conn()
 
             base_dir = os.getcwd() + "/raw"
 
             logger.info(get_function_name(), message=f"Checking {missing_file}")
-            if missing_file.endswith("csv"):
-                file_path = f"{base_dir}/{missing_file}"
+            if csv_file.endswith("csv"):
+                file_path = f"{base_dir}/{csv_file}"
                 logger.info(
                     get_function_name(),
                     message=f"Attempting to load data for {file_path}",
