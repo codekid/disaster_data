@@ -39,6 +39,10 @@ models:
     clean:
       +schema: clean
 
+    mart:
+      disaster_data:
+        +schema: disaster_data
+
     staging:
       disaster_data:
         +schema: airflow
