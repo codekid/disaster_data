@@ -96,3 +96,12 @@ The following tables should be available for you to query.
 - public_airflow.stg_disaster_data
 - public_clean.clean__disaster_data
 - public_disaster_data.disaster_data__yearly_damage
+
+Turning off the services
+-
+
+If you'd like to wind down all of the services, simply enter the command below in the main project folder
+
+```shell
+docker compose down
+```
