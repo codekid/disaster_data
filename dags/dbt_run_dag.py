@@ -15,6 +15,7 @@ from pandas import DataFrame
 
 CONNECTION_ID = "tutorial_pg_conn"
 SCHEMA_NAME = "public"
+DATABASE_NAME = "airflow"
 # The path to the dbt project
 DBT_PROJECT_PATH = f"{os.environ['AIRFLOW_HOME']}/dags/dbt/analytics_practice"
 # The path where Cosmos will find the dbt executable
@@ -27,7 +28,7 @@ profile_config = ProfileConfig(
     target_name="dev",
     profile_mapping=PostgresUserPasswordProfileMapping(
         conn_id=CONNECTION_ID,
-        profile_args={"schema": SCHEMA_NAME},
+        profile_args={"schema": SCHEMA_NAME, "database": DATABASE_NAME},
     ),
 )
 
