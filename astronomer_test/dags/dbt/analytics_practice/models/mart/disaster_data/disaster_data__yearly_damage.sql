@@ -19,7 +19,7 @@ select
 		else null
 	end as damage_number,
 	case
-		when regexp_like(lower(right(damage_property, 1)), '[[:alpha:]]') then lower(right(damage_property, 1))
+		when lower(right(damage_property, 1)) ~ '[[:alpha:]]' then lower(right(damage_property, 1))
 		else null
 	end	as damage_unit
 from d

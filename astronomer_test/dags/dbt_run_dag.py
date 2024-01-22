@@ -14,12 +14,12 @@ import pandas as pd
 from pandas import DataFrame
 
 CONNECTION_ID = "tutorial_pg_conn"
-SCHEMA_NAME = "public"
+SCHEMA_NAME = "postgres"
 # The path to the dbt project
 DBT_PROJECT_PATH = f"{os.environ['AIRFLOW_HOME']}/dags/dbt/analytics_practice"
 # The path where Cosmos will find the dbt executable
 # in the virtual environment created in the Dockerfile
-DBT_EXECUTABLE_PATH = "/home/airflow/.local/bin/dbt"
+DBT_EXECUTABLE_PATH = "/usr/local/bin/dbt"
 
 
 profile_config = ProfileConfig(
