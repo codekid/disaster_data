@@ -1,4 +1,5 @@
 apache-airflow-providers-apache-spark==4.1.5
+airflow-provider-great-expectations==0.2.7
 # apache-airflow-providers-postgres==5.8.0
 structlog
 astronomer-cosmos[dbt.postgres]

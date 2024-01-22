@@ -1,0 +1,21 @@
+{
+    "data_asset_type": null,
+    "expectation_suite_name": "disaster_data_source_suite",
+    "expectations": [
+        {
+            "expectation_context": {
+                "description": null
+            },
+            "expectation_type": "expect_column_values_to_be_null",
+            "ge_cloud_id": null,
+            "kwargs": {
+                "column": "begin_yearmonth"
+            },
+            "meta": {}
+        }
+    ],
+    "ge_cloud_id": null,
+    "meta": {
+        "great_expectations_version": "0.18.8"
+    }
+}
