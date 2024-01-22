@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: disaster_data
-    database: airflow
+    database: postgres
     schema: public
     tables:
       - name: disaster_data

@@ -11,4 +11,5 @@ RUN pip install --upgrade pip
 RUN python -m venv dbt_venv
 # RUN pip install --upgrade pip && \
 RUN source dbt_venv/bin/activate
+RUN dbt deps
 RUN pip install --no-cache-dir -r dbt_requirements.txt
