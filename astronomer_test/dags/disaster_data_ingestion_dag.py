@@ -242,7 +242,8 @@ def disaster_data_ingestion():
             except Exception as e:
                 raise (e)
 
-        missing_files = collect_filenames_to_load()
+        # missing_files = collect_filenames_to_load()
+        missing_files = ["StormEvents_details-ftp_v1.0_d1950_c20210803.csv.gz"]
         (
             extract.expand(missing_file=missing_files)
             >> test_source_file_quality.expand(missing_file=missing_files)
