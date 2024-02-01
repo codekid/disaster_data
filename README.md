@@ -45,7 +45,7 @@ Now that we have all the prerequisites out of the way, let's bring up the app!
     astro dev start
     ```
 
-    After a few minutes all services should be up and running. Once they're up you'll be able to navigate to your [local airflow webserver](http://localhost:8080/). The default user is `airflow` and password is `airflow`.
+    After a few minutes all services should be up and running. Once they're up you'll be able to navigate to your [local airflow webserver](http://localhost:8080/). The default user is `admin` and password is `admin`.
     ![login_screent](images/airflow_login.png)
 
     Once you've successfully logged into the webserver you should see three DAGs; `add_connections_dag`, `disaster_data_ingestion_dag` and `dbt_run_dag`.
