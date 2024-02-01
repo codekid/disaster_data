@@ -1,0 +1,31 @@
+[0m10:37:30.805104 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1075e6d30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109b76e80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109b762e0>]}
+
+
+============================== 10:37:30.808096 | 61daaf95-db96-428e-bfb2-f24da92dabd2 ==============================
+[0m10:37:30.808096 [info ] [MainThread]: Running with dbt=1.7.3
+[0m10:37:30.808507 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'profiles_dir': '/Users/kadeemletts/.dbt', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'invocation_command': 'dbt init analytics_practice', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m10:37:30.808910 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse dict {'dir': PosixPath('/Users/kadeemletts/.dbt')}
+[0m10:37:30.809154 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m10:37:30.809790 [debug] [MainThread]: Starter project path: /Users/kadeemletts/.pyenv/versions/3.9.2/envs/dbt_postgres/lib/python3.9/site-packages/dbt/include/starter_project
+[0m10:37:30.812978 [info ] [MainThread]: 
+Your new dbt project "analytics_practice" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m10:37:30.813237 [info ] [MainThread]: Setting up your profile.
+[0m10:38:37.133082 [info ] [MainThread]: Profile analytics_practice written to /Users/kadeemletts/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m10:38:37.326394 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 66.54241, "process_user_time": 1.462185, "process_kernel_time": 0.276131, "process_mem_max_rss": "94814208", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m10:38:37.339360 [debug] [MainThread]: Command `dbt init` succeeded at 10:38:37.335590 after 66.56 seconds
+[0m10:38:37.348436 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1075e6d30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104a901f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109e352e0>]}
+[0m10:38:37.359977 [debug] [MainThread]: Flushing usage events

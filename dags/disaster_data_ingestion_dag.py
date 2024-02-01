@@ -5,6 +5,9 @@ import pendulum
 from airflow.decorators import dag, task, task_group
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.providers.postgres.operators.postgres import PostgresOperator
+from great_expectations_provider.operators.great_expectations import (
+    GreatExpectationsOperator,
+)
 
 from scripts.disaster_data.disaster_data_extraction import (
     check_directory_exists,
@@ -137,6 +140,33 @@ def disaster_data_ingestion():
             else:
                 logger.info(get_function_name(), message="No new files to load.")
 
+        @task(task_id="test_source_file_quality", max_active_tis_per_dag=MAX_ACTIVE_TIS)
+        def test_source_file_quality(missing_file):
+            """Check the data quality of the file."""
+            logger.info(
+                get_function_name(), message=f"Testing data quality for {missing_file}"
+            )
+            csv_file = missing_file[:-3]
+            base_dir = os.getcwd() + "/raw"
+            gx_validate_pg = None
+
+            if csv_file.endswith("csv"):
+                file_path = f"{base_dir}/{csv_file}"
+                logger.info(get_function_name(), message="made it her")
+
+                gx_validate_pg = GreatExpectationsOperator(
+                    data_asset_name="disaster__source",
+                    task_id="validate_source_expectations",
+                    data_context_root_dir="include/gx",
+                    dataframe_to_validate=pd.read_csv(file_path),
+                    execution_engine="PandasExecutionEngine",
+                    expectation_suite_name="disaster__source__suite",
+                    return_json_dict=True,
+                )
+
+            # execute the DQ check in this task
+            gx_validate_pg.execute(dict())
+
         @task(task_id="load_disaster_data", max_active_tis_per_dag=MAX_ACTIVE_TIS)
         def load_disaster_data(missing_file) -> None:
             """Load Disaster Data
@@ -212,9 +242,11 @@ def disaster_data_ingestion():
             except Exception as e:
                 raise (e)
 
-        missing_files = collect_filenames_to_load()
+        # missing_files = collect_filenames_to_load()
+        missing_files = ["StormEvents_details-ftp_v1.0_d1950_c20210803.csv.gz"]
         (
             extract.expand(missing_file=missing_files)
+            >> test_source_file_quality.expand(missing_file=missing_files)
             >> load_disaster_data.expand(missing_file=missing_files)
             >> log_filename(missing_files=missing_files)
             >> archive_disaster_data_file.expand(missing_file=missing_files)

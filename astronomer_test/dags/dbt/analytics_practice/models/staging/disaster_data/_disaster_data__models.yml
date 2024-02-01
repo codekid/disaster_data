@@ -1,5 +1,0 @@
-version: 2
-
-models:
-  - name: stg_disaster_data
-    description: "Staging view for disaster data. Responsible for deduplicating records."
