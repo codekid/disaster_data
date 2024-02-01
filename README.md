@@ -9,12 +9,13 @@ The disaster data repo is a sample integration that I worked on that downloads d
 - Docker
 - Airflow
 - Postgres
+- Astronomer
 
 ## Running the project
 
 ### Prerequisites
 
-Before you can start running the integration you'll need to download [Docker Desktop](https://www.docker.com/products/docker-desktop/) as well as [Git](https://git-scm.com/downloads) to your local computer. The free community version is enough to get this project running. In order to run this project you'll need at least **4GB** of RAM to allocate to the services that docker will create.
+Before you can start running the integration you'll need to download [Docker Desktop](https://www.docker.com/products/docker-desktop/), [Astronmer](https://docs.astronomer.io/astro/cli/install-cli) as well as [Git](https://git-scm.com/downloads) to your local computer. The free community version is enough to get this project running. In order to run this project you'll need at least **4GB** of RAM to allocate to the services that docker will create.
 
 **Please note** If this is your first time downloading docker, be sure to set how much memory/CPU cores docker is allocated.
 
@@ -41,7 +42,7 @@ Now that we have all the prerequisites out of the way, let's bring up the app!
     Once you have the repository downloaded, navigate to the folder in the terminal and run the following command. Running this command will start all the containers and import all prequisites necessary for the app.
 
     ```shell
-    docker compose up --build
+    astro dev start
     ```
 
     After a few minutes all services should be up and running. Once they're up you'll be able to navigate to your [local airflow webserver](http://localhost:8080/). The default user is `airflow` and password is `airflow`.
@@ -81,9 +82,9 @@ Connection Details
 -
 
 - Connection Name: `airflow-postgres`
-- Host name/address: `airflow`
-- Username: `airflow`
-- Password: `airflow`
+- Host name/address: `localhost`
+- Username: `postgres`
+- Password: `postgres`
 - Port: `5432`
 
 Query the data
@@ -91,11 +92,11 @@ Query the data
 
 The following tables should be available for you to query.
 
-- airflow.public.disaster_data
-- airflow.public.disaster_data_log
-- public_airflow.stg_disaster_data
-- public_clean.clean__disaster_data
-- public_disaster_data.disaster_data__yearly_damage
+- postgres.public.disaster_data
+- postgres.public.disaster_data_log
+- postgres.postgres_airflow.stg_disaster_data
+- postgres.postgres_clean.clean__disaster_data
+- postgres.postgres_disaster_data.disaster_data__yearly_damage
 
 Turning off the services
 -
@@ -103,5 +104,5 @@ Turning off the services
 If you'd like to wind down all of the services, simply enter the command below in the main project folder
 
 ```shell
-docker compose down
+astro dev stop
 ```
