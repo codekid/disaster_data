@@ -102,7 +102,7 @@ def check_already_loaded(files, conn) -> list:
     logger.info(
         get_function_name(), message=f"Running the following query: {loaded_sql}"
     )
-    loaded_files = pd.read_sql_query(loaded_sql, conn)
+    loaded_files = pd.read_sql(loaded_sql, conn)
     loaded_files = loaded_files["__filename"].values.tolist()
 
     return loaded_files
