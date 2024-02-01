@@ -7,6 +7,7 @@ def add_postgres_conn():
         conn_id="tutorial_pg_conn",
         conn_type="postgres",
         host="postgres",
+        schema="postgres",
         login="postgres",
         password="postgres",
         port=5432,
