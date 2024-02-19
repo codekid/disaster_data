@@ -10,6 +10,8 @@ The disaster data repo is a sample integration that I worked on that downloads d
 - Airflow
 - Postgres
 - Astronomer
+- dbt
+- great_expectations
 
 ## Running the project
 
