@@ -7,9 +7,32 @@ import gzip
 import urllib.request
 from bs4 import BeautifulSoup
 from structlog import get_logger
-
+from pandas import DataFrame
 
 URL = "https://www1.ncdc.noaa.gov/pub/data/swdi/stormevents/csvfiles/"
+
+
+def remove_invalid_rows(weather_data) -> DataFrame:
+    """Remove invalid rows
+
+    Remove repeated header rows that are  scattered randomly in the file.
+    """
+    weather_data = weather_data[weather_data["BEGIN_YEARMONTH"] != "BEGIN_YEARMONTH"]
+
+    return weather_data
+
+
+def add_meta_cols(df: DataFrame, meta_col_config: dict) -> DataFrame:
+    """
+    #### Add meta-data columns
+    Adds a few columns that would be useful during ingestion.
+    """
+    df["__row_hash"] = pd.util.hash_pandas_object(df.loc[:]).apply(str)
+    df["__filename"] = meta_col_config["__filename"]
+    df.rename(lambda x: x.replace('"', "").lower(), axis="columns", inplace=True)
+
+    return df
+
 
 
 # import psycopg2
@@ -110,7 +133,7 @@ def check_already_loaded(files, conn) -> list:
 
 def main(filenames=None):
     """Main landing area."""
-
+    filenames = ["StormEvents_details-ftp_v1.0_d1950_c20210803.csv.gz"]
     if filenames is None or len(filenames) == 0:
         filenames = []
 

@@ -5,3 +5,5 @@ apache-airflow-providers-postgres
 # apache-airflow-providers-postgres==5.8.0
 structlog
 astronomer-cosmos[dbt.postgres]
+astro-run-dag # This package is needed for the astro run command. It will be removed before a deploy
+black==24.3.0

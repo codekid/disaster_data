@@ -1,0 +1,2 @@
+structlog
+black==24.3.0
