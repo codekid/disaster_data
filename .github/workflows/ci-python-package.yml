@@ -35,4 +35,4 @@ jobs:
         black tests/scripts/
     - name: Test with pytest
       run: |
-        pytest disaster_data/test/scripts/
+        pytest tests/scripts/
