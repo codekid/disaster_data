@@ -1,0 +1,4 @@
+structlog
+pandas
+beautifulsoup4==4.12.3
+black==24.3.0
